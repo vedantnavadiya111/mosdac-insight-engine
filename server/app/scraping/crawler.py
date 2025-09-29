@@ -17,7 +17,7 @@ def is_valid_url(url: str, base_domain: str) -> bool:
     return parsed.scheme in ("http", "https") and base_domain in parsed.netloc
 
 
-def crawl_website(base_url: str, max_pages: int = 100):
+def crawl_website(base_url: str, max_pages: int = 200):
     """
     Crawl the MOSDAC website and return a list of unique URLs
     """
