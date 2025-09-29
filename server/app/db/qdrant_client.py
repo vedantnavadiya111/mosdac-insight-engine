@@ -1,7 +1,10 @@
+from dotenv import load_dotenv
 from qdrant_client import QdrantClient
 from qdrant_client.models import VectorParams, Distance, PointStruct
 import uuid
 import os
+
+load_dotenv()
 
 qdrant = QdrantClient(
     url=os.getenv("QDRANT_URL", "http://localhost:6333"),
