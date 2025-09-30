@@ -2,6 +2,7 @@ from dotenv import load_dotenv
 import os
 from openai import OpenAI
 from app.ai.retriever import retrieve
+from app.prompts.prompt1 import PROMPT1
 
 load_dotenv()
 
@@ -11,13 +12,30 @@ client = OpenAI(
 )
 
 
+def check_static_prompt(query: str) -> str | None:
+    """
+    Check if the query matches predefined prompts in PROMPT1.
+    Returns the matched answer or None if not found.
+    """
+    q_lower = query.lower()
+    for keywords, answer in PROMPT1.items():
+        if any(kw in q_lower for kw in keywords):
+            return answer.strip()
+    return None
+
+
 def generate_answer(query: str, top_k: int = 5) -> str:
     """
     Full RAG pipeline:
-    - Retrieve chunks
+    - First check static prompt knowledge (manual instructions), answer from the static prompt by rephrasing the steps in a better manner
+    - Else retrieve chunks from Qdrant
     - Construct context
     - Ask LLM to answer based on retrieved context
     """
+    static_answer = check_static_prompt(query)
+    if static_answer:
+        return f"\n{static_answer}"
+
     # retrieve docs
     docs = retrieve(query, top_k=top_k)
 
