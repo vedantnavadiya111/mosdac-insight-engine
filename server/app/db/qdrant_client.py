@@ -4,6 +4,10 @@ from qdrant_client.models import VectorParams, Distance, PointStruct
 import uuid
 import os
 
+# from fastapi import FastAPI
+
+# app = FastAPI()
+
 load_dotenv()
 
 qdrant = QdrantClient(
@@ -63,3 +67,26 @@ def upsert_chunks(chunks, embeddings):
     except Exception as e:
         print(f"❌ Failed to insert chunks: {e}")
         raise
+
+
+# def recreate_collection(vector_size: int):
+#     """Delete and recreate collection - clean slate"""
+#     try:
+#         if qdrant.collection_exists(COLLECTION_NAME):
+#             qdrant.delete_collection(COLLECTION_NAME)
+#             print(f"🗑️ Deleted existing collection {COLLECTION_NAME}")
+
+#         qdrant.create_collection(
+#             collection_name=COLLECTION_NAME,
+#             vectors_config=VectorParams(size=vector_size, distance=Distance.COSINE),
+#         )
+#         print(f"✅ Recreated collection {COLLECTION_NAME}")
+#     except Exception as e:
+#         print(f"❌ Collection recreation error: {e}")
+#         raise
+
+
+# @app.post("/scrape-and-reload")
+# def scrape_and_reload():
+#     """Complete rescrape with clean collection"""
+#     recreate_collection(vector_size=768)
