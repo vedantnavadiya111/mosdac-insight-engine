@@ -3,6 +3,7 @@ from qdrant_client import QdrantClient
 from qdrant_client.models import VectorParams, Distance, PointStruct
 import uuid
 import os
+from app.services.embeddings import embed_texts
 
 load_dotenv()
 
@@ -66,3 +67,25 @@ def upsert_chunks(chunks, embeddings, batch_size=100):
         except Exception as e:
             print(f"❌ Failed to insert batch {i//batch_size + 1}: {e}")
             raise
+
+
+def search_chunks(query: str, top_k=5):
+    """
+    Search Qdrant for most relevant chunks based on query.
+    Returns list of payloads (url, title, content).
+    """
+    try:
+        query_embedding = embed_texts([query])[0]
+
+        results = qdrant.search(
+            collection_name=COLLECTION_NAME,
+            query_vector=query_embedding,
+            limit=top_k,
+        )
+
+        hits = [hit.payload for hit in results]
+        return hits
+
+    except Exception as e:
+        print(f"Qdrant search failed: {e}")
+        return []
