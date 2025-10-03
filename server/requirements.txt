@@ -40,6 +40,7 @@ numpy==2.3.3
 openai==2.0.1
 orjson==3.11.3
 packaging==25.0
+passlib==1.7.4
 pdfminer==20191125
 pdfminer.six==20250506
 portalocker==3.2.0
@@ -51,6 +52,7 @@ pycparser==2.23
 pycryptodome==3.23.0
 pydantic==2.11.9
 pydantic_core==2.33.2
+PyJWT==2.10.1
 python-dotenv==1.1.1
 pywin32==311
 PyYAML==6.0.3
