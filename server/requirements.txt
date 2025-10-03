@@ -3,9 +3,11 @@ anyio==4.11.0
 beautifulsoup4==4.14.2
 cachetools==6.2.0
 certifi==2025.8.3
+cffi==2.0.0
 charset-normalizer==3.4.3
 click==8.3.0
 colorama==0.4.6
+cryptography==46.0.2
 distro==1.9.0
 dotenv==0.9.9
 fastapi==0.118.0
@@ -38,11 +40,15 @@ numpy==2.3.3
 openai==2.0.1
 orjson==3.11.3
 packaging==25.0
+pdfminer==20191125
+pdfminer.six==20250506
 portalocker==3.2.0
 proto-plus==1.26.1
 protobuf==6.32.1
 pyasn1==0.6.1
 pyasn1_modules==0.4.2
+pycparser==2.23
+pycryptodome==3.23.0
 pydantic==2.11.9
 pydantic_core==2.33.2
 python-dotenv==1.1.1
