@@ -1,5 +1,6 @@
 annotated-types==0.7.0
 anyio==4.11.0
+bcrypt==4.0.1
 beautifulsoup4==4.14.2
 cachetools==6.2.0
 certifi==2025.8.3
@@ -9,7 +10,9 @@ click==8.3.0
 colorama==0.4.6
 cryptography==46.0.2
 distro==1.9.0
+dnspython==2.8.0
 dotenv==0.9.9
+email-validator==2.3.0
 fastapi==0.118.0
 filetype==1.2.0
 google==3.0.0
@@ -30,8 +33,6 @@ idna==3.10
 jiter==0.11.0
 jsonpatch==1.33
 jsonpointer==3.0.0
-jsonwebtoken==1.0.0
-jwt==1.4.0
 langchain==0.3.27
 langchain-core==0.3.77
 langchain-google-genai==2.1.12
@@ -48,13 +49,14 @@ pdfminer.six==20250506
 portalocker==3.2.0
 proto-plus==1.26.1
 protobuf==6.32.1
+psycopg2==2.9.10
 pyasn1==0.6.1
 pyasn1_modules==0.4.2
 pycparser==2.23
 pycryptodome==3.23.0
 pydantic==2.11.9
 pydantic_core==2.33.2
-PyJWT==2.10.1
+PyJWT==2.8.0
 python-dotenv==1.1.1
 pywin32==311
 PyYAML==6.0.3
