@@ -15,3 +15,4 @@ class User(Base):
     chat_history = relationship(
         "ChatContext", back_populates="user", cascade="all, delete-orphan"
     )
+    downloads = relationship("DownloadJob", back_populates="user")
