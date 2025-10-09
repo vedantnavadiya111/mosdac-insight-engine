@@ -1,5 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException, Query
+from fastapi.responses import FileResponse
 from typing import List
+import os
 from sqlalchemy.orm import Session
 from app.db.session import get_db
 from app.schemas.download import DownloadStartRequest, DownloadStatusResponse
@@ -47,3 +49,24 @@ def get_history(
         query = query.filter(DownloadJob.status == status)
     jobs = query.order_by(DownloadJob.created_at.desc()).limit(limit).all()
     return jobs
+
+
+@router.get("/file/{job_id}")
+def download_file(job_id: int, db: Session = Depends(get_db)):
+    """Serve the downloaded zip file to the user."""
+    job = db.get(DownloadJob, job_id)
+    if not job:
+        raise HTTPException(status_code=404, detail="Download job not found")
+
+    if job.status != "completed" or not job.file_path:
+        raise HTTPException(status_code=400, detail="File not ready for download")
+
+    if not os.path.exists(job.file_path):
+        raise HTTPException(status_code=404, detail="File not found on server")
+
+    filename = os.path.basename(job.file_path)
+    return FileResponse(
+        path=job.file_path,
+        filename=filename,
+        media_type="application/zip",
+    )

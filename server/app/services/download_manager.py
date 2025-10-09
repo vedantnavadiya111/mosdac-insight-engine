@@ -1,10 +1,12 @@
 import os
 import threading
+import shutil
 from datetime import datetime
 from sqlalchemy.orm import Session
 from app.services.mosdac_client import MosdacClient
 from app.db.session import get_db
 from app.models.download import DownloadJob
+from sqlalchemy.exc import SQLAlchemyError
 
 
 class DownloadManager:
@@ -32,7 +34,7 @@ class DownloadManager:
         return job
 
     def _run_download(self, job_id: int, username: str, password: str, dataset_id: str):
-        """Threaded background job execution with fault-tolerant downloading."""
+        """Threaded background job execution with isolated DB session."""
         db = next(get_db())
         try:
             job = db.get(DownloadJob, job_id)
@@ -85,18 +87,31 @@ class DownloadManager:
 
             job = db.get(DownloadJob, job_id)
             if successful_downloads > 0:
+                # ✅ Zip the downloaded folder
+                zip_path = shutil.make_archive(base_dir, "zip", base_dir)
                 job.status = "completed"
-                job.file_path = base_dir
+                job.file_path = zip_path
                 job.error_message = None
             else:
                 job.status = "failed"
                 job.error_message = "No files were downloaded successfully."
 
-        except Exception as e:
+        except SQLAlchemyError as db_err:
+            print(f"⚠️ Database error during download job {job_id}: {db_err}")
+            db.rollback()
             job = db.get(DownloadJob, job_id)
-            job.status = "failed"
-            job.error_message = str(e)
+            if job:
+                job.status = "failed"
+                job.error_message = "Database connection issue during download."
+                db.commit()
+
+        except Exception as e:
+            print(f"⚠️ Unexpected error in job {job_id}: {e}")
+            job = db.get(DownloadJob, job_id)
+            if job:
+                job.status = "failed"
+                job.error_message = str(e)
+                db.commit()
 
         finally:
-            db.commit()
             db.close()
