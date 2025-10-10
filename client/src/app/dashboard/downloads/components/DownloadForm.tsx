@@ -12,7 +12,11 @@ export default function DownloadForm() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!datasetId || !username || !password) return;
-    startDownload({ dataset_id: datasetId, mosdac_username: username, mosdac_password: password });
+    startDownload({
+      dataset_id: datasetId,
+      mosdac_username: username,
+      mosdac_password: password,
+    });
   };
 
   return (
@@ -32,7 +36,10 @@ export default function DownloadForm() {
         onChange={(e) => setPassword(e.target.value)}
         className="border p-2 rounded w-full"
       />
-      <button type="submit" className="bg-blue-500 text-white p-2 rounded w-full">
+      <button
+        type="submit"
+        className="bg-blue-500 text-white p-2 rounded w-full"
+      >
         Start Download
       </button>
     </form>
