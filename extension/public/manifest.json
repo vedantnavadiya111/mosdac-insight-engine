@@ -17,12 +17,38 @@
     "128": "icon128.png"
   },
   "background": {
-    "service_worker": "src/background/background.js",
+    "service_worker": "background/background.js",
     "type": "module"
   },
-  "permissions": ["storage", "downloads", "activeTab", "scripting"],
+  "permissions": [
+    "storage",
+    "downloads",
+    "activeTab",
+    "scripting"
+  ],
   "host_permissions": [
+    "https://mosdac.gov.in/*",
     "http://localhost:8000/*",
     "https://your-deployed-backend.com/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://mosdac.gov.in/*"
+      ],
+      "js": [
+        "content/injectWidget.js"
+      ]
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "popup/*"
+      ],
+      "matches": [
+        "https://*.mosdac.gov.in/*"
+      ]
+    }
   ]
 }
