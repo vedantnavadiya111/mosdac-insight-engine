@@ -61,7 +61,7 @@ export default function ChatBox({ onLogout }: ChatBoxProps) {
   };
 
   return (
-    <div className="flex flex-col w-80 h-96 bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden">
+    <div className="flex flex-col w-full h-full max-w-sm mx-auto bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden">
       {/* Header */}
       <div className="bg-gradient-to-r from-blue-600 to-orange-500 p-4 text-white">
         <div className="flex justify-between items-center">

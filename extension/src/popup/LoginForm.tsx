@@ -33,7 +33,7 @@ export default function LoginForm({ onLogin }: { onLogin: () => void }) {
   };
 
   return (
-    <div className="w-80 bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden">
+    <div className="w-full max-w-sm mx-auto bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden">
       {/* Header */}
       <div className="bg-gradient-to-r from-blue-600 to-orange-500 p-4 text-white">
         <div className="flex items-center justify-center space-x-2">
