@@ -7,6 +7,7 @@ import os
 
 load_dotenv()
 
+from app.routes.chat import get_current_user
 from app.schemas.user import UserRegister, UserLogin, UserOut, Token
 from app.models.user import User
 from app.db.session import get_db
@@ -51,3 +52,11 @@ def login(user: UserLogin, db: Session = Depends(get_db)):
 
     token = create_access_token({"sub": str(db_user.id)})
     return {"access_token": token, "token_type": "bearer"}
+
+
+@router.get("/me")
+def read_users_me(current_user: User = Depends(get_current_user)):
+    """
+    Return the currently authenticated user's information
+    """
+    return {"id": current_user.id, "email": current_user.email}
