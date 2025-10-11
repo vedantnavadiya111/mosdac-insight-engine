@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import api from "../lib/api";
 import { LogOut, Send, Bot, User, Loader2, Sparkles } from "lucide-react";
 
@@ -15,8 +15,16 @@ export default function ChatBox({ onLogout }: ChatBoxProps) {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  // Fetch chat history on component mount
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages, loading]);
+
   useEffect(() => {
     const fetchHistory = async () => {
       try {
@@ -173,6 +181,7 @@ export default function ChatBox({ onLogout }: ChatBoxProps) {
             </div>
           </div>
         )}
+        <div ref={messagesEndRef} />
       </div>
 
       {/* Input */}

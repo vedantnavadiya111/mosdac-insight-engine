@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import ChatMessage from "@/components/ChatMessage";
 import ChatInput from "@/components/ChatInput";
 import { useChat } from "@/hooks/useChat";
@@ -8,6 +8,15 @@ import { Bot, Satellite, Sparkles } from "lucide-react";
 
 export default function ChatPage() {
   const { messages, sendMessage, loading, loadHistory } = useChat();
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages, loading]);
 
   useEffect(() => {
     loadHistory();
@@ -92,6 +101,7 @@ export default function ChatPage() {
             </span>
           </div>
         )}
+        <div ref={messagesEndRef} />
       </div>
 
       {/* Chat Input */}
