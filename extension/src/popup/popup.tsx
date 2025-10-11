@@ -18,7 +18,7 @@ function Popup() {
   if (loggedIn) return <ChatBox onLogout={() => setLoggedIn(false)} />;
 
   return (
-    <div className="min-h-96 w-80 bg-gradient-to-br from-blue-50 to-orange-50 p-6">
+    <div className="min-h-96 w-full h-full bg-gradient-to-br from-blue-50 to-orange-50 p-6">
       {/* Logo/Brand Header */}
       <div className="text-center mb-6">
         <div className="flex items-center justify-center space-x-2 mb-2">
