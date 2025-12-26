@@ -1,6 +1,8 @@
-# ISRO SagarMegh AI
+# MOSDAC Insight Engine
 
-A comprehensive AI-powered platform for accessing, analyzing, and downloading ISRO's meteorological and oceanographic satellite data. This project provides an intelligent interface to MOSDAC (Meteorological and Oceanographic Satellite Data Archival Centre) with advanced chatbot capabilities, dataset downloads, and browser extension integration.
+Built by **Vedant Navadiya**.
+
+A comprehensive AI-powered platform for accessing, analyzing, and downloading meteorological and oceanographic satellite datasets from MOSDAC (Meteorological and Oceanographic Satellite Data Archival Centre). This project provides an intelligent interface with advanced chatbot capabilities, dataset downloads, and browser extension integration.
 
 ## 🚀 Features
 
@@ -308,9 +310,11 @@ Chrome extension providing:
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-## 🏛️ About ISRO SagarMegh
+## 🏛️ About MOSDAC & SagarMegh
 
-SagarMegh is ISRO's comprehensive platform for meteorological and oceanographic satellite data services. This AI-powered interface enhances access to MOSDAC's vast repository of satellite data, providing researchers, scientists, and weather professionals with intelligent tools for data discovery and analysis.
+SagarMegh is an ISRO platform for meteorological and oceanographic satellite data services, and MOSDAC is the archival centre behind many of the datasets and documentation.
+
+MOSDAC Insight Engine is an independent, developer-built interface that improves discoverability and workflow around these public resources.
 
 ### Key Benefits
 

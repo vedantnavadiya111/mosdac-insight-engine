@@ -21,15 +21,15 @@ const ChatInput: React.FC<ChatInputProps> = ({ onSend, disabled }) => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="bg-white border-t border-gray-200/70 p-4 shadow-lg"
+      className="bg-white border-t border-zinc-200 p-4"
     >
       <div className="flex items-end space-x-3">
         {/* Input Field */}
         <div className="flex-1 relative">
           <input
             type="text"
-            className="w-full border border-gray-300 rounded-2xl px-4 py-3 pr-12 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-gray-50/80 backdrop-blur-sm disabled:opacity-50 disabled:cursor-not-allowed"
-            placeholder="Ask MOSDAC AI about satellite data, weather, or ocean monitoring..."
+            className="w-full border border-zinc-200 rounded-2xl px-4 py-3 pr-12 focus:outline-none focus:ring-2 focus:ring-zinc-900/10 focus:border-zinc-300 transition bg-white disabled:opacity-50 disabled:cursor-not-allowed"
+            placeholder="Ask about datasets, docs, downloads…"
             value={input}
             onChange={(e) => setInput(e.target.value)}
             disabled={disabled}
@@ -46,7 +46,7 @@ const ChatInput: React.FC<ChatInputProps> = ({ onSend, disabled }) => {
         <button
           type="submit"
           disabled={disabled || !input.trim()}
-          className="bg-gradient-to-r from-blue-600 to-orange-500 hover:from-blue-700 hover:to-orange-600 text-white w-12 h-12 rounded-2xl flex items-center justify-center transition-all duration-200 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none shadow-md"
+          className="bg-zinc-900 hover:bg-zinc-800 text-white w-12 h-12 rounded-2xl flex items-center justify-center transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
         >
           <Send className="w-5 h-5" />
         </button>
@@ -65,7 +65,7 @@ const ChatInput: React.FC<ChatInputProps> = ({ onSend, disabled }) => {
             type="button"
             onClick={() => onSend(tip)}
             disabled={disabled}
-            className="text-xs bg-blue-50 text-blue-600 hover:bg-blue-100 px-3 py-1 rounded-full transition-colors duration-200 disabled:opacity-50"
+            className="text-xs bg-zinc-100 text-zinc-700 hover:bg-zinc-200 px-3 py-1 rounded-full transition-colors duration-200 disabled:opacity-50"
           >
             {tip}
           </button>

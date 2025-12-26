@@ -79,20 +79,20 @@ export default function DatasetSelector({
 
   return (
     <div className="space-y-3">
-      <label className="text-sm font-medium text-gray-700 flex items-center space-x-2">
+      <label className="text-sm font-medium text-zinc-800 flex items-center space-x-2">
         <Database className="w-4 h-4" />
         <span>Select Dataset</span>
       </label>
 
       {/* Search Input */}
       <div className="relative">
-        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-zinc-400 w-4 h-4" />
         <input
           type="text"
           placeholder="Search datasets..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+          className="w-full pl-10 pr-4 py-2.5 border border-zinc-200 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-zinc-900/10 focus:border-zinc-300 transition"
         />
       </div>
 
@@ -101,7 +101,7 @@ export default function DatasetSelector({
         <select
           value={value}
           onChange={(e) => onChange(e.target.value)}
-          className="w-full appearance-none border border-gray-300 rounded-xl px-4 py-2.5 pr-10 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-white"
+          className="w-full appearance-none border border-zinc-200 rounded-xl px-4 py-2.5 pr-10 bg-white focus:outline-none focus:ring-2 focus:ring-zinc-900/10 focus:border-zinc-300 transition"
         >
           <option value="">Choose a dataset...</option>
           {categories.map((category) => (
@@ -116,19 +116,19 @@ export default function DatasetSelector({
             </optgroup>
           ))}
         </select>
-        <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4 pointer-events-none" />
+        <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 text-zinc-400 w-4 h-4 pointer-events-none" />
       </div>
 
       {/* Selected Dataset Info */}
       {value && (
-        <div className="bg-blue-50 border border-blue-200 rounded-xl p-3">
-          <div className="flex items-center space-x-2 text-blue-700">
+        <div className="bg-zinc-50 border border-zinc-200 rounded-xl p-3">
+          <div className="flex items-center space-x-2 text-zinc-800">
             <Database className="w-4 h-4" />
             <span className="text-sm font-medium">
               {datasets.find((ds) => ds.id === value)?.name}
             </span>
           </div>
-          <p className="text-blue-600 text-xs mt-1">
+          <p className="text-zinc-600 text-xs mt-1">
             Category: {datasets.find((ds) => ds.id === value)?.category}
           </p>
         </div>

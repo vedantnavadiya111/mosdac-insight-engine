@@ -39,18 +39,18 @@ export default function DownloadForm() {
 
       {/* Username Input */}
       <div className="space-y-2">
-        <label className="text-sm font-medium text-gray-700 flex items-center space-x-2">
+        <label className="text-sm font-medium text-zinc-800 flex items-center space-x-2">
           <User className="w-4 h-4" />
           <span>MOSDAC Username / Email</span>
         </label>
         <div className="relative">
-          <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+          <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-zinc-400 w-4 h-4" />
           <input
             type="text"
             placeholder="Enter your MOSDAC credentials"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+            className="w-full pl-10 pr-4 py-3 border border-zinc-200 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-zinc-900/10 focus:border-zinc-300 transition"
             required
           />
         </div>
@@ -58,30 +58,30 @@ export default function DownloadForm() {
 
       {/* Password Input */}
       <div className="space-y-2">
-        <label className="text-sm font-medium text-gray-700 flex items-center space-x-2">
+        <label className="text-sm font-medium text-zinc-800 flex items-center space-x-2">
           <Lock className="w-4 h-4" />
           <span>MOSDAC Password</span>
         </label>
         <div className="relative">
-          <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+          <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-zinc-400 w-4 h-4" />
           <input
             type="password"
             placeholder="Enter your password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+            className="w-full pl-10 pr-4 py-3 border border-zinc-200 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-zinc-900/10 focus:border-zinc-300 transition"
             required
           />
         </div>
       </div>
 
       {/* Security Note */}
-      <div className="bg-blue-50 border border-blue-200 rounded-xl p-4">
-        <div className="flex items-center space-x-2 text-blue-700">
+      <div className="bg-zinc-50 border border-zinc-200 rounded-xl p-4">
+        <div className="flex items-center space-x-2 text-zinc-800">
           <Shield className="w-4 h-4" />
           <span className="text-sm font-medium">Secure Authentication</span>
         </div>
-        <p className="text-blue-600 text-xs mt-1">
+        <p className="text-zinc-600 text-xs mt-1">
           Your credentials are securely transmitted and encrypted. We do not
           store your MOSDAC password.
         </p>
@@ -91,7 +91,7 @@ export default function DownloadForm() {
       <button
         type="submit"
         disabled={loading || !datasetId || !username || !password}
-        className="w-full bg-gradient-to-r from-blue-600 to-orange-500 hover:from-blue-700 hover:to-orange-600 text-white font-semibold py-3 px-4 rounded-xl transition-all duration-200 transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center space-x-2 shadow-lg"
+        className="w-full bg-zinc-900 hover:bg-zinc-800 text-white font-semibold py-3 px-4 rounded-xl transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
       >
         {loading ? (
           <>

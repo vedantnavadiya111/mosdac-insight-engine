@@ -1,5 +1,5 @@
 import React from "react";
-import { User, Bot, Satellite, Download } from "lucide-react";
+import { User, Bot, Download } from "lucide-react";
 
 interface ChatMessageProps {
   role: "user" | "assistant";
@@ -19,8 +19,8 @@ const ChatMessage: React.FC<ChatMessageProps> = ({ role, content }) => {
       <div
         className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center ${
           isUser
-            ? "bg-gradient-to-r from-blue-600 to-blue-700 text-white shadow-md"
-            : "bg-gradient-to-r from-orange-500 to-orange-600 text-white shadow-md"
+            ? "bg-zinc-900 text-white"
+            : "bg-white text-zinc-900 border border-zinc-200"
         }`}
       >
         {isUser ? <User className="w-4 h-4" /> : <Bot className="w-4 h-4" />}
@@ -28,18 +28,17 @@ const ChatMessage: React.FC<ChatMessageProps> = ({ role, content }) => {
 
       {/* Message Bubble */}
       <div
-        className={`max-w-[75%] rounded-2xl px-4 py-3 shadow-sm ${
+        className={`max-w-[75%] rounded-2xl px-4 py-3 shadow-sm border ${
           isUser
-            ? "bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-br-none"
-            : "bg-white border border-gray-200 text-gray-800 rounded-bl-none"
+            ? "bg-zinc-900 text-white border-zinc-900 rounded-br-none"
+            : "bg-white text-zinc-800 border-zinc-200 rounded-bl-none"
         }`}
       >
         {/* Assistant Message Header */}
         {!isUser && (
           <div className="flex items-center space-x-2 mb-2">
-            <Satellite className="w-3 h-3 text-orange-500" />
-            <span className="text-xs font-semibold text-orange-600">
-              MOSDAC AI
+            <span className="text-xs font-semibold text-zinc-600">
+              MOSDAC Insight Engine
             </span>
           </div>
         )}
@@ -49,7 +48,7 @@ const ChatMessage: React.FC<ChatMessageProps> = ({ role, content }) => {
 
         {/* Download Button for Assistant Messages with Download Links */}
         {!isUser && content.toLowerCase().includes("download") && (
-          <button className="mt-3 flex items-center space-x-2 bg-green-500 hover:bg-green-600 text-white text-xs px-3 py-1.5 rounded-lg transition-colors duration-200">
+          <button className="mt-3 flex items-center space-x-2 bg-zinc-900 hover:bg-zinc-800 text-white text-xs px-3 py-1.5 rounded-lg transition-colors duration-200">
             <Download className="w-3 h-3" />
             <span>Download Dataset</span>
           </button>
@@ -58,7 +57,7 @@ const ChatMessage: React.FC<ChatMessageProps> = ({ role, content }) => {
         {/* Timestamp */}
         <div
           className={`text-xs mt-2 ${
-            isUser ? "text-blue-200" : "text-gray-500"
+            isUser ? "text-white/70" : "text-zinc-500"
           }`}
         >
           {new Date().toLocaleTimeString([], {

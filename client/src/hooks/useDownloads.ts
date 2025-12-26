@@ -1,5 +1,6 @@
 import { useState, useCallback } from "react";
-import axios from "@/lib/axios";
+import api from "@/lib/axios";
+import axios from "axios";
 
 interface DownloadJob {
   id: number;
@@ -17,19 +18,24 @@ export function useDownloads() {
     try {
       setLoading(true);
       setError(null);
-      const res = await axios.get("/download/history");
+      const res = await api.get("/download/history");
       setJobs(res.data);
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error("Failed to load download history:", err);
 
+      const isNetworkError =
+        axios.isAxiosError(err) &&
+        (err.code === "ECONNREFUSED" || err.message === "Network Error");
+      const status = axios.isAxiosError(err) ? err.response?.status : undefined;
+
       // Better error messages
-      if (err.code === "ECONNREFUSED" || err.message === "Network Error") {
+      if (isNetworkError) {
         setError(
           "Cannot connect to server. Please make sure the backend is running on port 8000."
         );
-      } else if (err.response?.status === 401) {
+      } else if (status === 401) {
         setError("Authentication required. Please log in again.");
-      } else if (err.response?.status === 404) {
+      } else if (status === 404) {
         setError("Download history endpoint not found.");
       } else {
         setError("Failed to load download history. Please try again.");
@@ -49,20 +55,27 @@ export function useDownloads() {
     try {
       setLoading(true);
       setError(null);
-      await axios.post("/download/start", data);
+      await api.post("/download/start", data);
       await loadHistory(); // Reload history after starting download
       return { success: true };
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error("Failed to start download:", err);
 
       let errorMessage = "Failed to start download.";
-      if (err.code === "ECONNREFUSED" || err.message === "Network Error") {
+      const isNetworkError =
+        axios.isAxiosError(err) &&
+        (err.code === "ECONNREFUSED" || err.message === "Network Error");
+
+      if (isNetworkError) {
         errorMessage =
           "Cannot connect to server. Please make sure the backend is running.";
-      } else if (err.response?.data?.detail) {
-        errorMessage = err.response.data.detail;
-      } else if (err.response?.status === 401) {
-        errorMessage = "Authentication failed. Please check your credentials.";
+      } else if (axios.isAxiosError(err)) {
+        const data = err.response?.data as { detail?: string } | undefined;
+        if (data?.detail) {
+          errorMessage = data.detail;
+        } else if (err.response?.status === 401) {
+          errorMessage = "Authentication failed. Please check your credentials.";
+        }
       }
 
       setError(errorMessage);

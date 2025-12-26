@@ -14,8 +14,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "ISRO SagarMegh AI",
-  description: "An AI-powered MOSDAC data assistant by ISRO",
+  title: "MOSDAC Insight Engine",
+  description:
+    "AI assistant for MOSDAC/SagarMegh datasets — built by Vedant Navadiya",
 };
 
 export default function RootLayout({
@@ -24,9 +25,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-zinc-50 text-zinc-900`}
+        suppressHydrationWarning
       >
         <Navbar />
         {children}

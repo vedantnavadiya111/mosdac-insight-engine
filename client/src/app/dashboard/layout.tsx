@@ -20,9 +20,11 @@ export default function DashboardLayout({
   }, [router]);
 
   return (
-    <div className="flex">
+    <div className="flex min-h-[calc(100vh-4rem)]">
       <Sidebar />
-      <div className="flex-1 p-6 bg-gray-100 min-h-screen">{children}</div>
+      <div className="flex-1 bg-zinc-50">
+        <div className="mx-auto max-w-6xl p-6">{children}</div>
+      </div>
     </div>
   );
 }
