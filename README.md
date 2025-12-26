@@ -5,7 +5,6 @@ Built by **Vedant Navadiya**.
 A comprehensive AI-powered platform for accessing, analyzing, and downloading meteorological and oceanographic satellite datasets from MOSDAC (Meteorological and Oceanographic Satellite Data Archival Centre). This project provides an intelligent interface with advanced chatbot capabilities, dataset downloads, and browser extension integration.
 
 
-##video Demo
 https://github.com/user-attachments/assets/30f968c4-2ecf-4faa-a62e-c54d5bade6f8
 
 
